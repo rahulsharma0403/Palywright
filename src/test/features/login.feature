@@ -6,15 +6,15 @@ Background:  // if we want to execute something first
 
 
 Scenario: Login should be success
-    Given User enter the username as "<rahul_sharma>"
-    When user enter the password as "<Stagingdemo@0403>"
+    Given User enter the username as "rahul_sharma"
+    When User enter the password as "Stagingdemo@0403"
     When User click on the login button
     Then Login should be success
 
 
 Scenario: Login should not be success
   Given User enter the username as "Rahul"
-  When user enter the password as "Sharma"
+  When User enter the password as "Sharma"
   When User click on the login button
   But Login should fail
  
