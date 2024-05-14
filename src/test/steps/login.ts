@@ -17,7 +17,7 @@ Given('User Click on the login link', async function () {
 
 Given('User enter the username as {string}', async function (username) {
   await page.locator("//input[@id='loginuserid']").fill(username);
-});
+});``
 
 Given('User enter the password as {string}', async function (password) {
   await page.locator("//input[@id='password']").fill(password);
@@ -28,15 +28,15 @@ When('User click on the login button', async function () {
 });
 
 Then('Login should be success', async function () {
-  const text = await page.locator("//span[@id='topBarTabName3']']").textContent();
-  console.log("Manage Media" + text);
+  await expect (page.locator("#topBarTabName3")).toHaveText('Manage Media');
+  console.log("Login in is a success")
   await browser.close();
 });
 
 When('Login should fail', async function () {
-  const text = page.locator("div[id='loginMessage'] div div span").textContent();
-  //await expect(text).toBeVisible();
-  //await expect(page.getByText('Welcome')).toBeVisible();
-
+  //const text = page.locator("div[id='loginMessage'] div div span").textContent();   
+  //await expect(text).toBeVisible();await expect(page.getByTestId('status')).toHaveText('Submitted');
+  //await expect(page.getByText('Unable to log in: Invalid Credentials')).toBeVisible();
+  await expect (page.locator("div[id='loginMessage'] div div span")).toHaveText('Unable to log in: Invalid Credentials');
   await browser.close();
 });
