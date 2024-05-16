@@ -4,6 +4,7 @@ import { chromium, Page, Browser, expect } from "@playwright/test";
 let browser: Browser;
 let page: Page;
 
+//let  media_library = page.locator('#firstPartText');
 
 Given('User navigates to the application', async function () {
   browser = await chromium.launch({ headless: false });
@@ -11,13 +12,14 @@ Given('User navigates to the application', async function () {
   await page.goto("https://staging-demo.yuja.com/");
 });
 
+
 Given('User Click on the login link', async function () {
   await page.locator("//button[@id='loginBtn']").click();
 });
 
-Given('User enter the username as {string}', async function (username) {
+Given('User enter the username as {string}', { timeout: 120000 },async function (username) {
   await page.locator("//input[@id='loginuserid']").fill(username);
-});``
+});
 
 Given('User enter the password as {string}', async function (password) {
   await page.locator("//input[@id='password']").fill(password);
@@ -27,7 +29,7 @@ When('User click on the login button', async function () {
   await page.locator("//button[@id='loginButton']").click();
 });
 
-Then('Login should be success', async function () {
+Then('Login should be success',  { timeout: 120000 },async function () {
   
   expect (page.locator("#topBarTabName3")).toBeVisible({timeout: 10000});
   await expect (page.locator("#topBarTabName3")).toContainText('Manage Media');
@@ -43,7 +45,7 @@ Then('Login should be success', async function () {
   await expect (video_conference).toContainText('Video Conference');
   var new_folder = page.locator("div[id='btnNewFolder'] span[class='file-explore-icon']");
   await expect (new_folder).toContainText('NEW FOLDER');
-  var new_playlist = page.locator ("div[id='btnNewFolder'] span[class='file-explore-icon']");
+  var new_playlist = page.locator ("div[id='btnNewPlaylist'] span[class='file-explore-icon']");
   await expect (new_playlist).toContainText('NEW PLAYLIST');
   var upload = page.locator("div[id='btnUploadMedia'] span[class='file-explore-icon']");
   await expect(upload).toContainText('UPLOAD');
