@@ -11,3 +11,11 @@
    }
 
 }
+
+module.exports = {
+  default: {
+    require: ['src/step-definitions/**/*.ts'], // Load step definitions
+    format: ['progress', 'json:./reports/report.json'], // Load custom formatters
+    parallel: 2 // Execute features in parallel
+  }
+}
